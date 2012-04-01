@@ -14,15 +14,14 @@ import java.util.ArrayList;
 public class Till {
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	private ArrayList<Item> items = new ArrayList<Item>();
-	private final String xmlFileLocation = "/home/tim/etc/till.xml";
-	private final String itemLocation = "/home/tim/etc/items.xml";
+	private ArrayList<Discount> discounts = new ArrayList<Discount>();
 	public Till(){
 		
 	}
-	public void load(){
+	public void load(String dir){
 		FileInputStream os = null;
 		try {
-			os = new FileInputStream(xmlFileLocation);
+			os = new FileInputStream(dir);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -37,10 +36,10 @@ public class Till {
         	decoder.close();
         }
 	}
-	public void loadItems(){
+	public void loadItems(String dir){
 		FileInputStream os = null;
 		try {
-			os = new FileInputStream(itemLocation);
+			os = new FileInputStream(dir);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -55,10 +54,28 @@ public class Till {
         	decoder.close();
         }
 	}
-	public void save(){
+	public void loadDiscounts(String dir){
+		FileInputStream os = null;
+		try {
+			os = new FileInputStream(dir);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        XMLDecoder decoder = new XMLDecoder(os);
+        String j = (String)decoder.readObject();
+        int i = Integer.parseInt(j);
+        for(int k = 0; k<i; k++){
+        	Discount o = (Discount)decoder.readObject();
+        	discounts.add(o);
+        }
+        if(decoder!=null){
+        	decoder.close();
+        }
+	}
+	public void save(String dir){
 		FileOutputStream os = null;
 		try {
-			os = new FileOutputStream(xmlFileLocation);
+			os = new FileOutputStream(dir);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -72,9 +89,9 @@ public class Till {
 			encoder.close();
 		}
 	}
-	public void saveItems(){
+	public void saveItems(String dir){
 		FileOutputStream os = null;
-		File f = new File(itemLocation);
+		File f = new File(dir);
 		if(f.exists()){
 			f.delete();
 		}
@@ -100,6 +117,34 @@ public class Till {
 			encoder.close();
 		}
 	}
+	public void saveDiscounts(String dir){
+		FileOutputStream os = null;
+		File f = new File(dir);
+		if(f.exists()){
+			f.delete();
+		}
+		try {
+			f.createNewFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			os = new FileOutputStream(f);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		XMLEncoder encoder = new XMLEncoder(os);
+		String i = new String(items.size()+"");
+		PersistenceDelegate pd=encoder.getPersistenceDelegate(Integer.class);
+		encoder.setPersistenceDelegate(BigDecimal.class,pd );
+		encoder.writeObject(i);
+		for(Discount o: discounts){
+			encoder.writeObject(o);
+		}
+		if(encoder!=null){
+			encoder.close();
+		}
+	}
 	public Order newOrder(){
 		Order o = new Order();
 		return o;
@@ -114,5 +159,32 @@ public class Till {
 	}
 	public ArrayList<Item> getItems(){
 		return items;
+	}
+	public ArrayList<Item> getPizza(){
+		ArrayList<Item> p = new ArrayList<Item>();
+		for(Item i: items){
+			if(i instanceof ItemPizza){
+				p.add(i);
+			}
+		}
+		return p;
+	}
+	public ArrayList<Item> getSide(){
+		ArrayList<Item> p = new ArrayList<Item>();
+		for(Item i: items){
+			if(i instanceof ItemSide){
+				p.add(i);
+			}
+		}
+		return p;
+	}
+	public ArrayList<Item> getDrink(){
+		ArrayList<Item> p = new ArrayList<Item>();
+		for(Item i: items){
+			if(i instanceof ItemDrink){
+				p.add(i);
+			}
+		}
+		return p;
 	}
 }

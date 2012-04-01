@@ -24,6 +24,9 @@ public class Order {
 	public void updateItemQuantity(OrderItem item, int quantity){
 		item.setQuantity(quantity);
 	}
+	public ArrayList<OrderItem> getOrderItems(){
+		return items;
+	}
 	public BigDecimal getSubtotal(){
 		BigDecimal returnVal = new BigDecimal("0.00");
 		for(OrderItem i: items){

@@ -4,15 +4,15 @@ import java.math.BigDecimal;
 
 
 public class ItemPizza extends ItemSuper{
-	private PizzaEnum size;
-	public ItemPizza(BigDecimal price, String description, PizzaEnum size){
+	private PizzaSizeEnum size;
+	public ItemPizza(BigDecimal price, String description, PizzaSizeEnum size){
 		super(price, description);
 		this.size = size;
 	}
-	public PizzaEnum getSize(){
+	public PizzaSizeEnum getSize(){
 		return size;
 	}
-	public void setSize(PizzaEnum size){
+	public void setSize(PizzaSizeEnum size){
 		this.size = size;
 	}
 	public String toString(){

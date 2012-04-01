@@ -11,15 +11,17 @@ import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemDrink;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide;
-import uk.ac.aber.dcs.cs12420.aberpizza.data.PizzaEnum;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.PizzaSizeEnum;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
 
 public class Items {
 	private Till t;
 	private Till l;
-	private Item i1 = new ItemPizza(new BigDecimal("9.99"),"Tasty Pizza",PizzaEnum.LARGE),
+	private Item i1 = new ItemPizza(new BigDecimal("9.99"),"Tasty Pizza",PizzaSizeEnum.LARGE),
 			i2 = new ItemSide(new BigDecimal("1.99"),"Chips"),
 			i3 = new ItemDrink(new BigDecimal("0.60"),"Cola");
+	private final String xmlFileLocation = "/home/tim/etc/till.xml";
+	private final String itemLocation = "/home/tim/etc/items.xml";
 	private Item findItemByName(ArrayList<Item> a, Item b){
 		Item returnVal = null;
 		for(Item i: a){
@@ -36,8 +38,8 @@ public class Items {
 		t.addItem(i1);
 		t.addItem(i2);
 		t.addItem(i3);
-		t.saveItems();
-		l.loadItems();
+		t.saveItems(itemLocation);
+		l.loadItems(itemLocation);
 	}
 	@Test
 	public void testComparePizza(){
