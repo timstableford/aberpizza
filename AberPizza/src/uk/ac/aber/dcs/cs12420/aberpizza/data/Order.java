@@ -43,4 +43,9 @@ public class Order {
 	public void setDate(Date date){
 		this.date = date;
 	}
+	public void printItems(){
+		for(OrderItem i: items){
+			System.out.println(i);
+		}
+	}
 }

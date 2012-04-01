@@ -2,7 +2,8 @@ package uk.ac.aber.dcs.cs12420.aberpizza.data;
 
 import java.math.BigDecimal;
 
-public class ItemPizza extends ItemSuper {
+
+public class ItemPizza extends ItemSuper{
 	private PizzaEnum size;
 	public ItemPizza(BigDecimal price, String description, PizzaEnum size){
 		super(price, description);
@@ -13,5 +14,11 @@ public class ItemPizza extends ItemSuper {
 	}
 	public void setSize(PizzaEnum size){
 		this.size = size;
+	}
+	public String toString(){
+		return super.toString()+":"+size.name();
+	}
+	public ItemPizza(){
+		
 	}
 }

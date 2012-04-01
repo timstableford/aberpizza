@@ -23,4 +23,7 @@ public class OrderItem {
 	public void setQuantity(int i){
 		quantity = i;
 	}
+	public String toString(){
+		return item.getDescription()+":"+quantity+":£"+item.getPrice();
+	}
 }
