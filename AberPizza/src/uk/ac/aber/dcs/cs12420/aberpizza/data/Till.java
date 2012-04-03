@@ -38,6 +38,8 @@ public class Till {
 	}
 	public void loadItems(String dir){
 		FileInputStream os = null;
+		File f = new File(dir);
+		if(!f.exists()){ return; }
 		try {
 			os = new FileInputStream(dir);
 		} catch (FileNotFoundException e) {
@@ -56,10 +58,13 @@ public class Till {
 	}
 	public void loadDiscounts(String dir){
 		FileInputStream os = null;
+		File f = new File(dir);
+		if(!f.exists()){ return; }
 		try {
 			os = new FileInputStream(dir);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			return;
 		}
         XMLDecoder decoder = new XMLDecoder(os);
         String j = (String)decoder.readObject();
@@ -186,5 +191,12 @@ public class Till {
 			}
 		}
 		return p;
+	}
+	public Order getCurrentOrder(){
+		if(orders.size()<1){ 
+			orders.add(new Order());
+		}
+		Order o = orders.get(orders.size()-1);
+		return o;
 	}
 }

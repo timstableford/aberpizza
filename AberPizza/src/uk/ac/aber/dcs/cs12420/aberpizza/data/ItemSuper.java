@@ -3,7 +3,7 @@ package uk.ac.aber.dcs.cs12420.aberpizza.data;
 import java.math.BigDecimal;
 
 
-public abstract class ItemSuper implements Item{
+public abstract class ItemSuper implements Item, Cloneable{
 	protected transient BigDecimal price;
 	protected String description;
 	public ItemSuper(BigDecimal price, String description){
@@ -23,10 +23,13 @@ public abstract class ItemSuper implements Item{
 		this.description = description;
 	}
 	public String toString(){
-		return description+":£"+price;
+		return description+" - £"+price;
 	}
 	public ItemSuper(){
 		
 	}
+	public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 	
 }
