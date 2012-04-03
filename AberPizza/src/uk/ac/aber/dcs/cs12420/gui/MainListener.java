@@ -12,6 +12,7 @@ public class MainListener implements ActionListener{
 		String actionCommand = arg0.getActionCommand();
 		if("Add To Order".equals(actionCommand)){
 			mainFrame.addItemToOrder();
+			mainFrame.updatePrices();
 		}
 	}
 }

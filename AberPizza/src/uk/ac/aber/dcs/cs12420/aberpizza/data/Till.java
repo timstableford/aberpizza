@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Till {
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	private ArrayList<Item> items = new ArrayList<Item>();
-	private ArrayList<Discount> discounts = new ArrayList<Discount>();
+	private ArrayList<DiscountSuper> discounts = new ArrayList<DiscountSuper>();
 	public Till(){
 		
 	}
@@ -72,7 +72,7 @@ public class Till {
         String j = (String)decoder.readObject();
         int i = Integer.parseInt(j);
         for(int k = 0; k<i; k++){
-        	Discount o = (Discount)decoder.readObject();
+        	DiscountSuper o = (DiscountSuper)decoder.readObject();
         	discounts.add(o);
         }
         if(decoder!=null){
@@ -145,7 +145,7 @@ public class Till {
 		PersistenceDelegate pd=encoder.getPersistenceDelegate(Integer.class);
 		encoder.setPersistenceDelegate(BigDecimal.class,pd );
 		encoder.writeObject(i);
-		for(Discount o: discounts){
+		for(DiscountSuper o: discounts){
 			encoder.writeObject(o);
 		}
 		if(encoder!=null){
@@ -153,7 +153,7 @@ public class Till {
 		}
 	}
 	public Order newOrder(){
-		Order o = new Order();
+		Order o = new Order(this);
 		return o;
 	}
 	public void addItem(Item i){
@@ -196,9 +196,15 @@ public class Till {
 	}
 	public Order getCurrentOrder(){
 		if(orders.size()<1){ 
-			orders.add(new Order());
+			orders.add(newOrder());
 		}
 		Order o = orders.get(orders.size()-1);
 		return o;
+	}
+	public ArrayList<DiscountSuper> getDiscounts(){
+		return discounts;
+	}
+	public void addDiscount(DiscountSuper d){
+		discounts.add(d);
 	}
 }

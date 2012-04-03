@@ -7,13 +7,16 @@ import org.junit.Test;
 
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Order;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
 
 public class Pizza {
 	private Order order;
 	private ItemPizza p;
+	private Till till;
 	@Before
 	public void setup(){
-		order = new Order();
+		till = new Till();
+		order = new Order(till);
 		p = new ItemPizza();
 	}
 	

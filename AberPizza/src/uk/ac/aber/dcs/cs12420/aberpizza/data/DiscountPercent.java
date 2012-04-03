@@ -3,15 +3,13 @@ package uk.ac.aber.dcs.cs12420.aberpizza.data;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class DiscountPercent extends Discount{
-	
+public class DiscountPercent extends DiscountSuper{
 	public DiscountPercent(ArrayList<OrderItem> i, BigDecimal d){
 		super(i, d);
 	}
 	public DiscountPercent(){
 		
 	}
-	@Override
 	public BigDecimal getDiscount(Order o) {
 		ArrayList<OrderItem> l = o.getOrderItems();
 		BigDecimal sub = o.getSubtotal();

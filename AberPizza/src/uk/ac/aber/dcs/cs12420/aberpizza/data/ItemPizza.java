@@ -30,6 +30,16 @@ public class ItemPizza extends ItemSuper implements Cloneable{
 		
 	}
 	@Override
+	public boolean equals(Item i){
+		if(!(i instanceof ItemPizza)){ return false; }
+		ItemPizza j = (ItemPizza)i;
+		if(j.getDescription().equals(description)&&j.getPrice().equals(price)&&j.getSize()==size){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	@Override
 	public BigDecimal getPrice(){
 		switch(size){
 		case SMALL:

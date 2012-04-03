@@ -31,6 +31,7 @@ public class MainFrame extends JFrame {
 	private JTextField customerName;
 	private JList itemList, orderList;
 	private MainListener mainListener;
+	private JLabel disLabel, totLabel;
 	public MainFrame(Till t){
 		till = t;
 		mainListener = new MainListener(this);
@@ -85,7 +86,9 @@ public class MainFrame extends JFrame {
 		mainPanel.add(add, c);
 		
 		//right panel
-		JLabel orderLabel = new JLabel("Order for:"), disLabel = new JLabel("Discounts: £0.00"), totLabel = new JLabel("SubTotal: £0.00");
+		JLabel orderLabel = new JLabel("Order for:");
+		disLabel = new JLabel("Discounts: £0.00");
+		totLabel = new JLabel("Subtotal: £0.00");
 		JButton payButton = new JButton("Pay"), cancelButton = new JButton("Cancel");
 		payButton.addActionListener(mainListener);
 		cancelButton.addActionListener(mainListener);
@@ -167,5 +170,9 @@ public class MainFrame extends JFrame {
 			}
 		}
 		return null;
+	}
+	public void updatePrices(){
+		totLabel.setText("Subtotal: £"+till.getCurrentOrder().getSubtotal());
+		totLabel.setText("Discounts: £"+till.getCurrentOrder().getDiscount());
 	}
 }

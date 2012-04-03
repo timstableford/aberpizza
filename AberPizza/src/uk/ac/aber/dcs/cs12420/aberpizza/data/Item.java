@@ -9,5 +9,6 @@ public interface Item {
 	public String getDescription();
 	public String getOrderString();
 	public void setDescription(String description);
+	public boolean equals(Item i);
 	public Object clone() throws CloneNotSupportedException;
 }

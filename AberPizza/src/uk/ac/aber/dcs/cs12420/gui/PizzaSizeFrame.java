@@ -34,7 +34,7 @@ public class PizzaSizeFrame extends JFrame implements ActionListener{
 			setSize(PizzaSizeEnum.SMALL);
 		}else if("Medium".equals(actionCommand)){
 			setSize(PizzaSizeEnum.MEDIUM);
-		}else if("LARGE".equals(actionCommand)){
+		}else if("Large".equals(actionCommand)){
 			setSize(PizzaSizeEnum.LARGE);
 		}
 	}

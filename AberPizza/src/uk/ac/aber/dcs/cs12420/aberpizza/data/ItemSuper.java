@@ -28,6 +28,13 @@ public abstract class ItemSuper implements Item, Cloneable{
 	public ItemSuper(){
 		
 	}
+	public boolean equals(Item i){
+		if(i.getDescription().equals(description)&&i.getPrice().equals(price)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public String getOrderString(){
 		return description;
 	}

@@ -15,7 +15,6 @@ public class OrderItem {
 	public BigDecimal getOrderItemTotal(){
 		BigDecimal returnVal = item.getPrice().multiply(new BigDecimal(quantity));
 		return returnVal;
-		
 	}
 	public Item getItem(){
 		return item;
@@ -24,6 +23,13 @@ public class OrderItem {
 		quantity = i;
 	}
 	public String toString(){
-		return item.getOrderString()+" - £"+item.getPrice().multiply(new BigDecimal(quantity));
+		return item.getOrderString()+" - "+quantity+" - £"+item.getPrice().multiply(new BigDecimal(quantity));
+	}
+	public boolean equals(OrderItem i){
+		boolean returnVal = true;
+		if(!i.getItem().equals(item)||i.getQuantity()!=quantity){
+			returnVal = false;
+		}
+		return returnVal;
 	}
 }
