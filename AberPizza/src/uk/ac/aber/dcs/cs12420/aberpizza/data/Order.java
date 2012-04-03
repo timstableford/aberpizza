@@ -18,12 +18,16 @@ public class Order {
 		this.customerName = customerName;
 	}
 	public void addItem(Item item, int quantity){
+		OrderItem o = new OrderItem(item, quantity);
+		items.add(o);
+	}
+	public Item getClone(Item i){
 		try {
-			Item d = (Item)(item.clone());
-			OrderItem o = new OrderItem(d, quantity);
-			items.add(o);
+			Item d = (Item)(i.clone());
+			return d;
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 	public void updateItemQuantity(OrderItem item, int quantity){

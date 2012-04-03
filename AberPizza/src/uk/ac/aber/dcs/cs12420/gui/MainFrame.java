@@ -1,16 +1,12 @@
 package uk.ac.aber.dcs.cs12420.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,91 +14,120 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
 
 public class MainFrame extends JFrame {
+	private static final long serialVersionUID = 4076991635240155077L;
 	private Till till = null;
 	private JMenuBar menubar;
-	private JPanel leftPanel, rightPanel;
+	private JPanel mainPanel;
 	private JTextField customerName;
 	private JList itemList, orderList;
 	private MainListener mainListener;
 	public MainFrame(Till t){
 		till = t;
 		mainListener = new MainListener(this);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//menubar
 		JMenu file = new JMenu("File"),admin = new JMenu("Admin"),help = new JMenu("Help");
 		menubar = new JMenuBar();
 		menubar.add(file);
 		menubar.add(admin);
 		menubar.add(help);
 		this.add(menubar, BorderLayout.NORTH);
-		leftPanel = new JPanel(new GridBagLayout());
-		leftPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		JPanel northPanel = new JPanel();
-		this.add(northPanel, BorderLayout.WEST);
-		northPanel.add(leftPanel, BorderLayout.NORTH);
-		this.setSize(new Dimension(800,600));
+		
+		//the main panel
+		mainPanel = new JPanel(new GridBagLayout());
+		//gridbag
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(2,2,2,2);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 1;
+		
 		//left panel
 		JButton pizza = new JButton("Pizza"), side = new JButton("Side"), drink = new JButton("Drink"), add = new JButton("Add To Order");
+		pizza.addActionListener(mainListener);
+		side.addActionListener(mainListener);
+		drink.addActionListener(mainListener);
 		add.addActionListener(mainListener);
-		String[] listData = arrayListToStringArray(t.getItems());
-		itemList = new JList(listData);
+		//pizza button
 		c.gridx = 0;
 		c.gridy = 0;
-		leftPanel.add(pizza,c);
+		mainPanel.add(pizza,c);
+		//side button
 		c.gridx = 1;
-		leftPanel.add(side,c);
+		mainPanel.add(side,c);
+		//drink button
 		c.gridx = 2;
-		leftPanel.add(drink,c);
+		mainPanel.add(drink,c);
+		//le list
 		c.gridy = 1;
 		c.gridx = 0;
 		c.gridwidth = 3;
-		c.fill = GridBagConstraints.BOTH;
-		leftPanel.add(itemList, c);
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weighty = 1;
+		String[] listData = arrayListToStringArray(t.getItems());
+		itemList = new JList(listData);
+		itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JScrollPane itemScroll = new JScrollPane(itemList);
+		itemList.ensureIndexIsVisible(itemList.getSelectedIndex());
+		mainPanel.add(itemScroll, c);
+		c.weighty = 0;
+		//add to order button
 		c.gridy = 2;
 		c.gridwidth = 3;
-		c.anchor = GridBagConstraints.CENTER;
-		leftPanel.add(add, c);
+		mainPanel.add(add, c);
+		
 		//right panel
-		rightPanel = new JPanel(new GridBagLayout());
-		rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		JLabel orderLabel = new JLabel("Order for:"), disLabel = new JLabel("Discounts: £0.00"), totLabel = new JLabel("SubTotal: £0.00");
 		JButton payButton = new JButton("Pay"), cancelButton = new JButton("Cancel");
+		payButton.addActionListener(mainListener);
+		cancelButton.addActionListener(mainListener);
+		//name label
+		c.gridx = 3;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		mainPanel.add(orderLabel, c);
+		//entry for name
+		c.gridx = 4;
 		customerName = new JTextField(12);
-		GridBagConstraints d = new GridBagConstraints();
-		d.insets = new Insets(2,2,2,2);
-		d.gridx = 0;
-		d.gridy = 0;
+		mainPanel.add(customerName, c);
+		//order list
+		c.gridx = 3;
+		c.gridy = 1;
+		c.gridwidth = 2;
+		c.weighty = 1;
 		String[] data = {" "};
 		orderList = new JList(data);
-		rightPanel.add(orderLabel, d);
-		d.gridx = 1;
-		rightPanel.add(customerName, d);
-		d.gridx = 0;
-		d.gridy = 1;
-		d.gridwidth = 2;
-		d.fill = GridBagConstraints.BOTH;
-		rightPanel.add(orderList, d);
-		d.gridy = 2;
-		rightPanel.add(disLabel, d);
-		d.gridy = 3;
-		rightPanel.add(totLabel, d);
-		d.gridy = 4;
-		d.gridx = 0;
-		d.gridwidth = 1;
-		rightPanel.add(payButton, d);
-		d.gridx = 1;
-		rightPanel.add(cancelButton, d);
-		northPanel.add(rightPanel,BorderLayout.WEST);
+		orderList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JScrollPane orderScroll = new JScrollPane(orderList);
+		orderList.ensureIndexIsVisible(orderList.getSelectedIndex());
+		mainPanel.add(orderScroll, c);
+		c.weighty = 0;
+		//discount label
+		c.gridwidth = 1;
+		c.gridx = 3;
+		c.gridy = 2;
+		mainPanel.add(disLabel, c);
+		//total label
+		c.gridy = 3;
+		mainPanel.add(totLabel, c);
+		//pay button
+		c.gridy = 4;
+		c.gridx = 3;
+		mainPanel.add(payButton, c);
+		//cancel button
+		c.gridx = 4;
+		mainPanel.add(cancelButton, c);
 		
+		this.add(mainPanel, BorderLayout.CENTER);
+		this.pack();
 	}
 	public String[] arrayListToStringArray(ArrayList<Item> i){
 		if(i.size()<1){ return null; }
@@ -113,10 +138,15 @@ public class MainFrame extends JFrame {
 		return returnVal;
 	}
 	public void addItemToOrder(){
-		till.getCurrentOrder().addItem(getSelectedItem(), 1);
+		Item selectedItem = getSelectedItem();
+		if(selectedItem instanceof ItemPizza){
+			PizzaSizeFrame p = new PizzaSizeFrame((ItemPizza)selectedItem, this);
+			p.setVisible(true);
+		}
+		till.getCurrentOrder().addItem(selectedItem, 1);
 		updateOrderList();
 	}
-	private void updateOrderList(){
+	public void updateOrderList(){
 		ArrayList<OrderItem> orderItems = till.getCurrentOrder().getOrderItems();
 		orderList.removeAll();
 		String[] data = new String[orderItems.size()];
@@ -133,7 +163,7 @@ public class MainFrame extends JFrame {
 		for(Item i: till.getItems()){
 			if(i.getDescription().trim().equals(d[0].trim())
 					&&i.getPrice().equals(new BigDecimal(d[1].trim().substring(1,d[1].trim().length())))){
-				return i;
+				return till.getCurrentOrder().getClone(i);
 			}
 		}
 		return null;

@@ -15,6 +15,7 @@ public class Main {
 		Till t = new Till();
 		t.loadItems(dir+itemloc);
 		t.loadDiscounts(dir+disloc);
+		t.load(histloc);
 		MainFrame m = new MainFrame(t);
 		m.setVisible(true);
 	}

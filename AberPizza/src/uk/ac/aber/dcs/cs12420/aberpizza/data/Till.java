@@ -20,6 +20,8 @@ public class Till {
 	}
 	public void load(String dir){
 		FileInputStream os = null;
+		File f = new File(dir);
+		if(!f.exists()){ return; }
 		try {
 			os = new FileInputStream(dir);
 		} catch (FileNotFoundException e) {

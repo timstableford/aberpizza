@@ -7,7 +7,7 @@ public class ItemPizza extends ItemSuper implements Cloneable{
 	private PizzaSizeEnum size;
 	public ItemPizza(BigDecimal price, String description){
 		super(price, description);
-		this.size = PizzaSizeEnum.UNSET;
+		this.size = PizzaSizeEnum.LARGE;
 	}
 	public ItemPizza(BigDecimal price, String description, PizzaSizeEnum size){
 		super(price, description);
@@ -20,9 +20,26 @@ public class ItemPizza extends ItemSuper implements Cloneable{
 		this.size = size;
 	}
 	public String toString(){
-		return super.toString()+" - "+size.name();
+		return description+" - £"+getPrice()+" - "+size;
+	}
+	@Override
+	public String getOrderString(){
+		return description+" - "+size;
 	}
 	public ItemPizza(){
 		
+	}
+	@Override
+	public BigDecimal getPrice(){
+		switch(size){
+		case SMALL:
+			return price.divide(new BigDecimal("100")).multiply(new BigDecimal("50"));
+		case MEDIUM:
+			return price.divide(new BigDecimal("100")).multiply(new BigDecimal("80"));
+		case LARGE: 
+			return price;
+		default:
+			return price;
+		}
 	}
 }

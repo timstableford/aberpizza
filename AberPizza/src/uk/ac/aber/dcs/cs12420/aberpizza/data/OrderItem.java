@@ -24,6 +24,6 @@ public class OrderItem {
 		quantity = i;
 	}
 	public String toString(){
-		return item.getDescription()+":"+quantity+":£"+item.getPrice();
+		return item.getOrderString()+" - £"+item.getPrice().multiply(new BigDecimal(quantity));
 	}
 }

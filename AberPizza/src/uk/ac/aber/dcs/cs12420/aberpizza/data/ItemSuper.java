@@ -28,6 +28,9 @@ public abstract class ItemSuper implements Item, Cloneable{
 	public ItemSuper(){
 		
 	}
+	public String getOrderString(){
+		return description;
+	}
 	public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
