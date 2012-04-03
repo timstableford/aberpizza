@@ -9,6 +9,10 @@ public class OrderItem {
 		this.quantity = quantity;
 		this.item = item;
 	}
+	public OrderItem(){};
+	public void setItem(Item i){
+		item = i;
+	}
 	public int getQuantity(){
 		return quantity;
 	}

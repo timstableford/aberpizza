@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public abstract class DiscountSuper implements Discount{
 	protected ArrayList<OrderItem> items = new ArrayList<OrderItem>();
 	protected BigDecimal discount;
-	//public abstract BigDecimal getDiscount(Order o);
 	public DiscountSuper(){ }
 	public DiscountSuper(ArrayList<OrderItem> i, BigDecimal d){
 		items = i;

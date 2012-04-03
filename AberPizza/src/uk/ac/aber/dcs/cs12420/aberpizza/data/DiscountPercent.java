@@ -7,9 +7,7 @@ public class DiscountPercent extends DiscountSuper{
 	public DiscountPercent(ArrayList<OrderItem> i, BigDecimal d){
 		super(i, d);
 	}
-	public DiscountPercent(){
-		
-	}
+	public DiscountPercent(){}
 	public BigDecimal getDiscount(Order o) {
 		ArrayList<OrderItem> l = o.getOrderItems();
 		BigDecimal sub = o.getSubtotal();
