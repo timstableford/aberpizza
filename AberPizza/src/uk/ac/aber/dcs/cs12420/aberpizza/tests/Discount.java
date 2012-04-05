@@ -24,11 +24,12 @@ public class Discount extends Till {
 	@Test
 	public void addDiscounts(){
 		ArrayList<OrderItem> i = new ArrayList<OrderItem>();
-		Item i1 = new ItemSide();
+		Item i1 = new ItemSide(new BigDecimal("1.99"), "Chips");
 		i.add(new OrderItem(i1, 3));
-		d1 = new DiscountValue(i, new BigDecimal("0.50"));
+		d1 = new DiscountValue(i, new BigDecimal("0.50"),true);
 		till.addDiscount(d1);
 		till.saveDiscounts("/home/tim/etc/discounts.xml");
+		System.out.println(till.getDiscounts());
 	}
 	@Test
 	public void loadAndCompareDiscounts(){

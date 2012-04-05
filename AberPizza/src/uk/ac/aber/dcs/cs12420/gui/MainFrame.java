@@ -31,7 +31,8 @@ public class MainFrame extends JFrame {
 	private JTextField customerName;
 	private JList itemList, orderList;
 	private MainListener mainListener;
-	private JLabel disLabel, totLabel;
+	private JLabel disLabel, totLabel, tLabel;
+	private boolean lock = false;
 	public MainFrame(Till t){
 		till = t;
 		mainListener = new MainListener(this);
@@ -74,6 +75,8 @@ public class MainFrame extends JFrame {
 		c.gridwidth = 3;
 		c.weighty = 1;
 		String[] listData = arrayListToStringArray(t.getItems());
+		String[] listBlank = {" "};
+		if(listData==null){ listData = listBlank; }
 		itemList = new JList(listData);
 		itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JScrollPane itemScroll = new JScrollPane(itemList);
@@ -89,6 +92,7 @@ public class MainFrame extends JFrame {
 		JLabel orderLabel = new JLabel("Order for:");
 		disLabel = new JLabel("Discounts: £0.00");
 		totLabel = new JLabel("Subtotal: £0.00");
+		tLabel = new JLabel("Total: £0.00");
 		JButton payButton = new JButton("Pay"), cancelButton = new JButton("Cancel");
 		payButton.addActionListener(mainListener);
 		cancelButton.addActionListener(mainListener);
@@ -118,9 +122,12 @@ public class MainFrame extends JFrame {
 		c.gridx = 3;
 		c.gridy = 2;
 		mainPanel.add(disLabel, c);
-		//total label
+		//subtotal label
 		c.gridy = 3;
 		mainPanel.add(totLabel, c);
+		//total label
+		c.gridx = 4;
+		mainPanel.add(tLabel, c);
 		//pay button
 		c.gridy = 4;
 		c.gridx = 3;
@@ -142,6 +149,7 @@ public class MainFrame extends JFrame {
 	}
 	public void addItemToOrder(){
 		Item selectedItem = getSelectedItem();
+		if(selectedItem==null){ return; }
 		if(selectedItem instanceof ItemPizza){
 			PizzaSizeFrame p = new PizzaSizeFrame((ItemPizza)selectedItem, this);
 			p.setVisible(true);
@@ -152,14 +160,18 @@ public class MainFrame extends JFrame {
 	public void updateOrderList(){
 		ArrayList<OrderItem> orderItems = till.getCurrentOrder().getOrderItems();
 		orderList.removeAll();
-		String[] data = new String[orderItems.size()];
-		for(int i = 0; i<orderItems.size(); i++){
-			data[i] = orderItems.get(i).toString();
+		String[] data = {" "};
+		if(orderItems.size()>0){
+			data = new String[orderItems.size()];
+			for(int i = 0; i<orderItems.size(); i++){
+				data[i] = orderItems.get(i).toString();
+			}
 		}
 		orderList.setListData(data);
 	}
 	private Item getSelectedItem(){
 		String data = (String)itemList.getSelectedValue();
+		if(itemList.isSelectionEmpty()){ return null; }
 		String[] d = data.split("-");
 		d[0].trim();
 		d[1].trim();
@@ -171,8 +183,34 @@ public class MainFrame extends JFrame {
 		}
 		return null;
 	}
+	public void cancel(){
+		till.removeMostRecentOrder();
+		updatePrices();
+		updateOrderList();
+	}
+	public void pay(){
+		till.pay();
+		updatePrices();
+		updateOrderList();
+	}
 	public void updatePrices(){
 		totLabel.setText("Subtotal: £"+till.getCurrentOrder().getSubtotal());
-		totLabel.setText("Discounts: £"+till.getCurrentOrder().getDiscount());
+		disLabel.setText("Discounts: £"+till.getCurrentOrder().getDiscount());
+		tLabel.setText("Total: £"+till.getCurrentOrder().getTotal());
+	}
+	public void pizzaOnly(){
+		itemList.setListData(arrayListToStringArray(till.getPizza()));
+	}
+	public void sideOnly(){
+		itemList.setListData(arrayListToStringArray(till.getSide()));
+	}
+	public void drinkOnly(){
+		itemList.setListData(arrayListToStringArray(till.getDrink()));
+	}
+	public void lock(boolean l){
+		lock = l;
+	}
+	public boolean isLocked(){
+		return lock;
 	}
 }

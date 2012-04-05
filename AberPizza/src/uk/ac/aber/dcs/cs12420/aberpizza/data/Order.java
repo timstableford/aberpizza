@@ -9,7 +9,15 @@ public class Order {
 	private Date date;
 	private String customerName;
 	private Till till;
+	private boolean hasPaid = false;
+	private final BigDecimal vatPercent = new BigDecimal("20");
 	private ArrayList<OrderItem> items = new ArrayList<OrderItem>();
+	public boolean isHasPaid() {
+		return hasPaid;
+	}
+	public void setHasPaid(boolean hasPaid) {
+		this.hasPaid = hasPaid;
+	}
 	public Order(Till t){
 		date = new Date();
 		till = t;
@@ -54,14 +62,14 @@ public class Order {
 	}
 	public BigDecimal getDiscount(){
 		ArrayList<BigDecimal> discountsThatApply = new ArrayList<BigDecimal>();
-		for(DiscountSuper d: till.getDiscounts()){
+		for(Discount d: till.getDiscounts()){
 			if(d.discountApplies(items)){
 				discountsThatApply.add(d.getDiscount());
 			}
 		}
 		Collections.sort(discountsThatApply);
-		System.out.println(discountsThatApply);
-		return new BigDecimal(0);
+		if(discountsThatApply.size()<1){ return new BigDecimal("0.00"); }
+		return discountsThatApply.get(0);
 	}
 	public String getReceipt(){
 		return "";
@@ -76,5 +84,11 @@ public class Order {
 		for(OrderItem i: items){
 			System.out.println(i);
 		}
+	}
+	public BigDecimal getTotal(){
+		BigDecimal returnVal = getSubtotal().subtract(getDiscount());
+		returnVal = returnVal.add(returnVal.divide(new BigDecimal("100")).multiply(vatPercent));
+		returnVal = returnVal.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		return returnVal;
 	}
 }

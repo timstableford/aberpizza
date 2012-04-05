@@ -20,7 +20,7 @@ public class ItemPizza extends ItemSuper implements Cloneable{
 		this.size = size;
 	}
 	public String toString(){
-		return description+" - £"+getPrice()+" - "+size;
+		return description+" - £"+getPrice();
 	}
 	@Override
 	public String getOrderString(){
@@ -41,11 +41,17 @@ public class ItemPizza extends ItemSuper implements Cloneable{
 	}
 	@Override
 	public BigDecimal getPrice(){
-		switch(size){
+		BigDecimal returnPrice = new BigDecimal("0.00");
+		if(size==null){ return price; }
+		switch(this.size){
 		case SMALL:
-			return price.divide(new BigDecimal("100")).multiply(new BigDecimal("50"));
+			returnPrice = price.divide(new BigDecimal("100")).multiply(new BigDecimal("50"));
+			returnPrice = returnPrice.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			return returnPrice;
 		case MEDIUM:
-			return price.divide(new BigDecimal("100")).multiply(new BigDecimal("80"));
+			returnPrice = price.divide(new BigDecimal("100")).multiply(new BigDecimal("80"));
+			returnPrice = returnPrice.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			return returnPrice;
 		case LARGE: 
 			return price;
 		default:

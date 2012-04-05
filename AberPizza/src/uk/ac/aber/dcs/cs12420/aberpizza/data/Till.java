@@ -141,11 +141,11 @@ public class Till {
 			e.printStackTrace();
 		}
 		XMLEncoder encoder = new XMLEncoder(os);
-		String i = new String(items.size()+"");
+		String i = new String(discounts.size()+"");
 		PersistenceDelegate pd=encoder.getPersistenceDelegate(Integer.class);
 		encoder.setPersistenceDelegate(BigDecimal.class,pd );
 		encoder.writeObject(i);
-		for(DiscountSuper o: discounts){
+		for(Discount o: discounts){
 			encoder.writeObject(o);
 		}
 		if(encoder!=null){
@@ -154,6 +154,7 @@ public class Till {
 	}
 	public Order newOrder(){
 		Order o = new Order(this);
+		orders.add(o);
 		return o;
 	}
 	public void addItem(Item i){
@@ -196,9 +197,12 @@ public class Till {
 	}
 	public Order getCurrentOrder(){
 		if(orders.size()<1){ 
-			orders.add(newOrder());
+			newOrder();
 		}
 		Order o = orders.get(orders.size()-1);
+		if(o.isHasPaid()){
+			o = newOrder();
+		}
 		return o;
 	}
 	public ArrayList<DiscountSuper> getDiscounts(){
@@ -206,5 +210,12 @@ public class Till {
 	}
 	public void addDiscount(DiscountSuper d){
 		discounts.add(d);
+	}
+	public void removeMostRecentOrder(){
+		if(getCurrentOrder()==null){ return; }
+		orders.remove(getCurrentOrder());
+	}
+	public void pay(){
+		getCurrentOrder().setHasPaid(true);
 	}
 }

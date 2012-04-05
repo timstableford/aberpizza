@@ -36,4 +36,11 @@ public class OrderItem {
 		}
 		return returnVal;
 	}
+	public boolean disApplies(OrderItem i){
+		boolean returnVal = true;
+		if(!i.getItem().equals(item)||i.getQuantity()<quantity){
+			returnVal = false;
+		}
+		return returnVal;
+	}
 }

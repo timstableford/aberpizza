@@ -4,11 +4,12 @@ import java.math.BigDecimal;
 
 
 public abstract class ItemSuper implements Item, Cloneable{
-	protected transient BigDecimal price;
+	protected transient BigDecimal price = new BigDecimal("0.00");;
 	protected String description;
 	public ItemSuper(BigDecimal price, String description){
 		this.price = price;
 		this.description = description;
+		price = price.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	public BigDecimal getPrice() {
 		return price;
@@ -26,7 +27,7 @@ public abstract class ItemSuper implements Item, Cloneable{
 		return description+" - £"+price;
 	}
 	public ItemSuper(){
-		
+		price = price.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	public boolean equals(Item i){
 		if(i.getDescription().equals(description)&&i.getPrice().equals(price)){

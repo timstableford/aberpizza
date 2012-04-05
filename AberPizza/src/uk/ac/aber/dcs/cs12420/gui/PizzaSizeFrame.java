@@ -17,15 +17,18 @@ public class PizzaSizeFrame extends JFrame implements ActionListener{
 	public PizzaSizeFrame(ItemPizza p, MainFrame mF){
 		pizza = p;
 		mainFrame = mF;
+		mainFrame.lock(true);
 		JButton small = new JButton("Small"), medium = new JButton("Medium"), large = new JButton("Large");
 		this.setLayout(new FlowLayout());
 		this.add(small);
 		this.add(medium);
 		this.add(large);
+		this.setAlwaysOnTop(true);
 		small.addActionListener(this);
 		medium.addActionListener(this);
 		large.addActionListener(this);
 		this.pack();
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -41,6 +44,8 @@ public class PizzaSizeFrame extends JFrame implements ActionListener{
 	public void setSize(PizzaSizeEnum size){
 		pizza.setSize(size);
 		mainFrame.updateOrderList();
+		mainFrame.updatePrices();
+		mainFrame.lock(false);
 		this.dispose();
 	}
 }

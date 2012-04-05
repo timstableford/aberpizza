@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class DiscountValue extends DiscountSuper {
-	public DiscountValue(ArrayList<OrderItem> i, BigDecimal d){
-		super(i,d);
+	public DiscountValue(ArrayList<OrderItem> i, BigDecimal d, boolean e){
+		super(i,d,e);
 	}
 	public DiscountValue(){}
 	public BigDecimal getDiscount(Order o) {

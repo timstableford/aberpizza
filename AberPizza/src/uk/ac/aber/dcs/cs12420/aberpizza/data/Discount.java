@@ -11,6 +11,7 @@ public interface Discount {
 		public BigDecimal getDiscount();
 		public boolean discountApplies(ArrayList<OrderItem> i);
 		public BigDecimal getDiscount(Order o);
-	
+		public boolean isEnabled();
+		public void setEnabled(boolean enabled);
 	
 }

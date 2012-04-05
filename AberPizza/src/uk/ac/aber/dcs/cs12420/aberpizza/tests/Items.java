@@ -17,7 +17,7 @@ import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
 public class Items {
 	private Till t;
 	private Till l;
-	private Item i1 = new ItemPizza(new BigDecimal("9.99"),"Tasty Pizza",PizzaSizeEnum.LARGE),
+	private Item i1 = new ItemPizza(new BigDecimal("9.99"),"Tasty Pizza",PizzaSizeEnum.UNSET),
 			i2 = new ItemSide(new BigDecimal("1.99"),"Chips"),
 			i3 = new ItemDrink(new BigDecimal("0.60"),"Cola");
 	private final String xmlFileLocation = "/home/tim/etc/till.xml";
@@ -25,7 +25,7 @@ public class Items {
 	private Item findItemByName(ArrayList<Item> a, Item b){
 		Item returnVal = null;
 		for(Item i: a){
-			if(i.getDescription().equals(b.getDescription())){
+			if(i.getDescription().trim().equals(b.getDescription().trim())){
 				returnVal = i;
 			}
 		}
