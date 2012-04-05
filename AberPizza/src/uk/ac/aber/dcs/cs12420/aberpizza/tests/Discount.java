@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountPercent;
-import uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountValue;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetPercent;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetValue;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem;
@@ -15,7 +15,7 @@ import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
 
 public class Discount extends Till {
 	private Till till,till2;
-	private DiscountValue d1;
+	private DiscountSetValue d1;
 	@Before
 	public void setup(){
 		till = new Till();
@@ -26,7 +26,7 @@ public class Discount extends Till {
 		ArrayList<OrderItem> i = new ArrayList<OrderItem>();
 		Item i1 = new ItemSide(new BigDecimal("1.99"), "Chips");
 		i.add(new OrderItem(i1, 3));
-		d1 = new DiscountValue(i, new BigDecimal("0.50"),true);
+		d1 = new DiscountSetValue(i, new BigDecimal("0.50"),true);
 		till.addDiscount(d1);
 		till.saveDiscounts("/home/tim/etc/discounts.xml");
 		System.out.println(till.getDiscounts());

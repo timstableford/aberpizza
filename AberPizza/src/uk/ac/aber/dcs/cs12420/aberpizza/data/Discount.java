@@ -9,7 +9,7 @@ public interface Discount {
 		public ArrayList<OrderItem> getItems();
 		public void setDiscount(BigDecimal p);
 		public BigDecimal getDiscount();
-		public boolean discountApplies(ArrayList<OrderItem> i);
+		public boolean discountApplies(Order i);
 		public BigDecimal getDiscount(Order o);
 		public boolean isEnabled();
 		public void setEnabled(boolean enabled);

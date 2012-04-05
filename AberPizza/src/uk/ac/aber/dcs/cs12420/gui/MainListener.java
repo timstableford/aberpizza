@@ -24,6 +24,10 @@ public class MainListener implements ActionListener{
 			mainFrame.cancel();
 		}else if("Pay".equals(actionCommand)){
 			mainFrame.pay();
+		}else if("Quantity+".equals(actionCommand)){
+			mainFrame.quantityPlus();
+		}else if("Quantity-".equals(actionCommand)){
+			mainFrame.quantityMinus();
 		}
 	}
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class DiscountSuper implements Discount{
 	protected ArrayList<OrderItem> items = new ArrayList<OrderItem>();
 	protected BigDecimal discount;
-	private boolean enabled = true;
+	protected boolean enabled = true;
 	public DiscountSuper(){ }
 	public DiscountSuper(ArrayList<OrderItem> i, BigDecimal d, boolean enabled){
 		items = i;
@@ -34,9 +34,10 @@ public abstract class DiscountSuper implements Discount{
 	public BigDecimal getDiscount(){
 		return discount;
 	}
-	public boolean discountApplies(ArrayList<OrderItem> i){
+	public boolean discountApplies(Order o){
 		if(!enabled){ return false; }
 		boolean returnVal = true;
+		ArrayList<OrderItem> i = o.getOrderItems();
 		for(OrderItem j: items){
 			boolean setVal = false;
 			for(OrderItem k: i){

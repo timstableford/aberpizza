@@ -63,7 +63,7 @@ public class Order {
 	public BigDecimal getDiscount(){
 		ArrayList<BigDecimal> discountsThatApply = new ArrayList<BigDecimal>();
 		for(Discount d: till.getDiscounts()){
-			if(d.discountApplies(items)){
+			if(d.discountApplies(this)){
 				discountsThatApply.add(d.getDiscount());
 			}
 		}
@@ -90,5 +90,8 @@ public class Order {
 		returnVal = returnVal.add(returnVal.divide(new BigDecimal("100")).multiply(vatPercent));
 		returnVal = returnVal.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		return returnVal;
+	}
+	public void removeOrderItem(OrderItem o){
+		items.remove(o);
 	}
 }
