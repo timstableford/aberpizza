@@ -20,7 +20,7 @@ public class Items {
 	private Item i1 = new ItemPizza(new BigDecimal("9.99"),"Tasty Pizza",PizzaSizeEnum.UNSET),
 			i2 = new ItemSide(new BigDecimal("1.99"),"Chips"),
 			i3 = new ItemDrink(new BigDecimal("0.60"),"Cola");
-	private final String xmlFileLocation = "/home/tim/etc/till.xml";
+	//private final String xmlFileLocation = "/home/tim/etc/till.xml";
 	private final String itemLocation = "/home/tim/etc/items.xml";
 	private Item findItemByName(ArrayList<Item> a, Item b){
 		Item returnVal = null;

@@ -91,6 +91,12 @@ public class Order {
 		returnVal = returnVal.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		return returnVal;
 	}
+	public BigDecimal getVAT(){
+		BigDecimal returnVal = getSubtotal().subtract(getDiscount());
+		returnVal = returnVal.divide(new BigDecimal("100")).multiply(vatPercent);
+		returnVal = returnVal.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		return returnVal;
+	}
 	public void removeOrderItem(OrderItem o){
 		items.remove(o);
 	}

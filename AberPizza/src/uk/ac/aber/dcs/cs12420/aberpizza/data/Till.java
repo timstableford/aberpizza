@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import uk.ac.aber.dcs.cs12420.aberpizza.data.htmlgenerator.Receipt;
+
 public class Till {
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	private ArrayList<Item> items = new ArrayList<Item>();
@@ -216,6 +218,10 @@ public class Till {
 		orders.remove(getCurrentOrder());
 	}
 	public void pay(){
+		Receipt r = new Receipt(getCurrentOrder());
+		for(String s: r.getReceipt()){
+			System.out.println(s);
+		}
 		getCurrentOrder().setHasPaid(true);
 	}
 }

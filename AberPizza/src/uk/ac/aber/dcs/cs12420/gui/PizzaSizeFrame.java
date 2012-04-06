@@ -24,6 +24,7 @@ public class PizzaSizeFrame extends JFrame implements ActionListener{
 		this.add(medium);
 		this.add(large);
 		this.setAlwaysOnTop(true);
+		this.setTitle("Set Pizza Size");
 		small.addActionListener(this);
 		medium.addActionListener(this);
 		large.addActionListener(this);

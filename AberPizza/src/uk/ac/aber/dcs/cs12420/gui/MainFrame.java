@@ -24,6 +24,7 @@ public class MainFrame extends JFrame {
 		till = t;
 		mainPanel = new MainPanel(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("AberPizza Till");
 		//menu bar
 		JMenu file = new JMenu("File"),admin = new JMenu("Admin"),help = new JMenu("Help");
 		menubar = new JMenuBar();

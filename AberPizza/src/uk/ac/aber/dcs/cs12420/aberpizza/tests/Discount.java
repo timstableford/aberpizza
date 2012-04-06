@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetPercent;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetValue;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide;
