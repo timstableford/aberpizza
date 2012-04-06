@@ -1,7 +1,7 @@
 package uk.ac.aber.dcs.cs12420.aberpizza;
 
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
-import uk.ac.aber.dcs.cs12420.gui.MainFrame;
+import uk.ac.aber.dcs.cs12420.aberpizza.gui.MainFrame;
 
 public class Main {
 	private static final String dir = "/home/tim/etc/";
