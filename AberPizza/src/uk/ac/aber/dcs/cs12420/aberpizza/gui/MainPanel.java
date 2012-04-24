@@ -3,6 +3,7 @@ package uk.ac.aber.dcs.cs12420.aberpizza.gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,16 +13,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.PizzaSizeEnum;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
+/**
+ * The main gui is created here
+ * @author tim
+ *
+ */
 public class MainPanel extends JPanel{
 	private static final long serialVersionUID = -981214312750360842L;
 	private JTextField customerName;
 	private JList itemList, orderList;
 	private MainListener mainListener;
 	private JLabel disLabel, subtotalLabel, totalLabel;
-	private MainFrame mainFrame;
-	public MainPanel(MainFrame mF){
-		mainFrame = mF;
-		mainListener = new MainListener(mainFrame);
+	private Till till;
+	public MainPanel(Till t){
+		till = t;
+		mainListener = new MainListener(till, this);
 		//the main panel
 		this.setLayout(new GridBagLayout());
 		//gridbag
@@ -122,38 +133,22 @@ public class MainPanel extends JPanel{
 		c.gridx = 4;
 		this.add(qplus, c);
 	}
-	public JList getItemList(){
-		return itemList;
-	}
-	public JList getOrderList(){
-		return orderList;
-	}
-	public void setSubtotal(String t){
-		subtotalLabel.setText(t);
-	}
-	public void setTotal(String t){
-		totalLabel.setText(t);
-	}
-	public void setDiscount(String t){
-		disLabel.setText(t);
-	}
-	public String getSelectedItem(){
-		if(itemList.isSelectionEmpty()){ return null; }
-		return (String)itemList.getSelectedValue();
-	}
-	public String getSelectedOrderItem(){
-		if(orderList.isSelectionEmpty()){ return null; }
-		return (String)orderList.getSelectedValue();
-	}
-	public int getSelectedOrderItemIndex(){
-		if(orderList.isSelectionEmpty()){ return 0; }
-		return orderList.getSelectedIndex();
-	}
-	public void setSelectedOrderItemIndex(int i){
+	/**
+	 * finds the item selected and updates its quantity
+	 * @param j quantity to change by
+	 */
+	public void quantityChange(int j){
+		if(orderList.isSelectionEmpty()){ return; }
+		String data = (String)orderList.getSelectedValue();
+		String[] d = data.split("-");
+		int i = orderList.getSelectedIndex();
+		Item item = till.findItem(d[0].trim());
+		if(item instanceof ItemPizza){
+			((ItemPizza) item).setSize(PizzaSizeEnum.valueOf(d[1].trim()));
+		}
+		till.getCurrentOrder().updateItemQuantity(item, j);
+		updateOrderList();
 		orderList.setSelectedIndex(i);
-	}
-	public void setOrderListData(String[] data){
-		orderList.setListData(data);
 	}
 	public void setItemListData(String[] data){
 		itemList.setListData(data);
@@ -163,5 +158,35 @@ public class MainPanel extends JPanel{
 	}
 	public void clearCustomerName(){
 		customerName.setText("");
+	}
+	public void updateItemList(){
+		String[] listData = till.itemListToStringArray(till.getItems());
+		String[] listBlank = {" "};
+		if(till.getItems().size()<1){
+			listData = listBlank;
+		}
+		itemList.setListData(listData);
+	}
+	public void updateOrderList(){
+		ArrayList<OrderItem> orderItems = till.getCurrentOrder().getOrderItems();
+		String[] data = {" "};
+		if(orderItems.size()>0){
+			data = new String[orderItems.size()];
+			for(int i = 0; i<orderItems.size(); i++){
+				data[i] = orderItems.get(i).toString();
+			}
+		}
+		orderList.setListData(data);
+		subtotalLabel.setText("Subtotal: £"+till.getCurrentOrder().getSubtotal());
+		disLabel.setText("Discounts: £"+till.getCurrentOrder().getDiscount());
+		totalLabel.setText("Total: £"+till.getCurrentOrder().getTotal());
+	}
+	public Item getSelectedItem(){
+		String data = null;
+		if(itemList.isSelectionEmpty()){ return null; }
+		data = (String)itemList.getSelectedValue();
+		String[] d = data.split("-");
+		Item i = till.findItem(d[0].trim());
+		return i;
 	}
 }

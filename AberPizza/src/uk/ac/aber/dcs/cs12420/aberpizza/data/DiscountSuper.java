@@ -2,22 +2,26 @@ package uk.ac.aber.dcs.cs12420.aberpizza.data;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
+/**
+ * Superclass for other discounts
+ * @author tim
+ * Contains items, discount amount and description
+ */
 public abstract class DiscountSuper implements Discount{
 	protected ArrayList<OrderItem> items = new ArrayList<OrderItem>();
 	protected BigDecimal discount;
-	protected boolean enabled = true;
+	private String description = "";
 	public DiscountSuper(){ }
-	public DiscountSuper(ArrayList<OrderItem> i, BigDecimal d, boolean enabled){
+	public DiscountSuper(ArrayList<OrderItem> i, BigDecimal d, String n){
 		items = i;
 		discount = d;
-		this.enabled = enabled;
+		description = n;
 	}
-	public boolean isEnabled() {
-		return enabled;
+	public String getDescription() {
+		return description;
 	}
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public void addItem(OrderItem i){
 		items.add(i);
@@ -34,21 +38,41 @@ public abstract class DiscountSuper implements Discount{
 	public BigDecimal getDiscount(){
 		return discount;
 	}
+	/**
+	 * Checks to see for each item in the discount that the order has at least the same quantity
+	 * @return true if the discount applies
+	 */
 	public boolean discountApplies(Order o){
-		if(!enabled){ return false; }
 		boolean returnVal = true;
 		ArrayList<OrderItem> i = o.getOrderItems();
 		for(OrderItem j: items){
-			boolean setVal = false;
-			for(OrderItem k: i){
-				if(j.disApplies(k)){
-					setVal = true;
+			if(j.getQuantity()>0){
+				boolean setVal = false;
+				for(OrderItem k: i){
+					if(j.disApplies(k)){
+						setVal = true;
+					}
 				}
-			}
-			if(setVal==false){
-				returnVal = false;
+				if(setVal==false){
+					returnVal = false;
+				}
 			}
 		}
 		return returnVal;
+	}
+	public boolean equals(Discount d){
+		if(d.getDescription().equals(this.getDescription())){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public OrderItem findItem(String desc){
+		for(OrderItem j: items){
+			if(j.getItem().getDescription().equals(desc)){
+				return j;
+			}
+		}
+		return null;
 	}
 }

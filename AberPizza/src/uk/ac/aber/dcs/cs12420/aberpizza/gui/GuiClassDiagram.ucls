@@ -1,0 +1,161 @@
+<class-diagram version="1.0.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.DiscountEditor" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/DiscountEditor.java" binary="false">    
+    <position height="-1" width="-1" x="-88" y="-210"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.MainFrame" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/MainFrame.java" binary="false">    
+    <position height="-1" width="-1" x="648" y="468"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.MainListener" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/MainListener.java" binary="false">    
+    <position height="-1" width="-1" x="150" y="460"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.MainPanel" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/MainPanel.java" binary="false">    
+    <position height="303" width="165" x="329" y="0"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.MenuListener" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/MenuListener.java" binary="false">    
+    <position height="-1" width="-1" x="376" y="483"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.PizzaSizeFrame" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/PizzaSizeFrame.java" binary="false">    
+    <position height="-1" width="-1" x="747" y="114"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.Viewer" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/Viewer.java" binary="false">    
+    <position height="-1" width="-1" x="-124" y="408"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.ItemEditor" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/ItemEditor.java" binary="false">    
+    <position height="-1" width="-1" x="-127" y="211"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.ItemValueEditor" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/ItemValueEditor.java" binary="false">    
+    <position height="-1" width="-1" x="-140" y="-8"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="10" corner="BOTTOM_RIGHT" language="java" name="uk.ac.aber.dcs.cs12420.aberpizza.gui.DiscountValueEditor" 
+    project="AberPizza" file="/AberPizza/src/uk/ac/aber/dcs/cs12420/aberpizza/gui/DiscountValueEditor.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="339" y="-203"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="11">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="12" name="mainPanel"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="15" name="menuListener"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="18" name="discountEditor"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="21" name="itemEditor"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="24" name="mainPanel"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="27" name="mainPanel"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="30" name="mainListener"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="33" name="mainPanel"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="36" name="mainPanel"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

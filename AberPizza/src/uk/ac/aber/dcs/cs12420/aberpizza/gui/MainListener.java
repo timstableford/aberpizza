@@ -3,31 +3,65 @@ package uk.ac.aber.dcs.cs12420.aberpizza.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
+import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
+/**
+ * Listens to button presses in the main panel
+ * @author tim
+ *
+ */
 public class MainListener implements ActionListener{
-	private MainFrame mainFrame;
-	public MainListener(MainFrame f){
-		mainFrame = f;
+	private Till till;
+	private MainPanel mainPanel;
+	public MainListener(Till t, MainPanel mP){
+		till = t;
+		mainPanel = mP;
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		String actionCommand = arg0.getActionCommand();
-		if(mainFrame.isLocked()){ return; }
 		if("Add To Order".equals(actionCommand)){
-			mainFrame.addItemToOrder();
-			mainFrame.updatePrices();
+			Item selectedItem = mainPanel.getSelectedItem();
+			if(selectedItem==null){ return; }
+			if(selectedItem instanceof ItemPizza){
+				PizzaSizeFrame p = new PizzaSizeFrame((ItemPizza)selectedItem, mainPanel, till.getCurrentOrder());
+				p.setVisible(true);
+			}else{
+				till.getCurrentOrder().addItem(selectedItem, 1);
+				mainPanel.updateOrderList();
+			}
 		}else if("Pizza".equals(actionCommand)){
-			mainFrame.pizzaOnly();
+			mainPanel.setItemListData(till.itemListToStringArray(till.getPizza()));
 		}else if("Drink".equals(actionCommand)){
-			mainFrame.drinkOnly();
+			mainPanel.setItemListData(till.itemListToStringArray(till.getDrink()));
 		}else if("Side".equals(actionCommand)){
-			mainFrame.sideOnly();
+			mainPanel.setItemListData(till.itemListToStringArray(till.getSide()));
 		}else if("Cancel".equals(actionCommand)){
-			mainFrame.cancel();
+			till.removeMostRecentOrder();
+			mainPanel.updateOrderList();
 		}else if("Pay".equals(actionCommand)){
-			mainFrame.pay();
+			if(mainPanel.getCustomerName().equals("")){
+				String message = "Name isn't set";
+				JOptionPane.showMessageDialog(mainPanel, message, "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			if(till.getCurrentOrder().getOrderItems().size()<1){
+				String message = "No items on order";
+				JOptionPane.showMessageDialog(mainPanel, message, "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			till.getCurrentOrder().setCustomerName(mainPanel.getCustomerName());
+			till.pay();
+			mainPanel.updateOrderList();
+			mainPanel.clearCustomerName();
 		}else if("Quantity+".equals(actionCommand)){
-			mainFrame.quantityPlus();
+			mainPanel.quantityChange(1);
 		}else if("Quantity-".equals(actionCommand)){
-			mainFrame.quantityMinus();
+			mainPanel.quantityChange(-1);
 		}
 	}
 }

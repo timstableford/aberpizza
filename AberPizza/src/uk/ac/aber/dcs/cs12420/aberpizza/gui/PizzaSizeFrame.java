@@ -8,16 +8,22 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza;
+import uk.ac.aber.dcs.cs12420.aberpizza.data.Order;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.PizzaSizeEnum;
-
+/**
+ * Shows small medium large button
+ * @author tim
+ * I realise now that I could have used a joptionchooser instead of this
+ */
 public class PizzaSizeFrame extends JFrame implements ActionListener{
 	private static final long serialVersionUID = -5408487799624675311L;
 	private ItemPizza pizza;
-	private MainFrame mainFrame;
-	public PizzaSizeFrame(ItemPizza p, MainFrame mF){
+	private MainPanel mainPanel;
+	private Order order;
+	public PizzaSizeFrame(ItemPizza p, MainPanel mP, Order o){
+		order = o;
 		pizza = p;
-		mainFrame = mF;
-		mainFrame.lock(true);
+		mainPanel = mP;
 		JButton small = new JButton("Small"), medium = new JButton("Medium"), large = new JButton("Large");
 		this.setLayout(new FlowLayout());
 		this.add(small);
@@ -28,6 +34,7 @@ public class PizzaSizeFrame extends JFrame implements ActionListener{
 		small.addActionListener(this);
 		medium.addActionListener(this);
 		large.addActionListener(this);
+		this.setLocationRelativeTo(mainPanel);
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
@@ -44,9 +51,9 @@ public class PizzaSizeFrame extends JFrame implements ActionListener{
 	}
 	public void setSize(PizzaSizeEnum size){
 		pizza.setSize(size);
-		mainFrame.updateOrderList();
-		mainFrame.updatePrices();
-		mainFrame.lock(false);
+		mainPanel.updateOrderList();
+		order.addItem(pizza, 1);
+		mainPanel.updateOrderList();
 		this.dispose();
 	}
 }

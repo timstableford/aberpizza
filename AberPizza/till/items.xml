@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.6.0_24" class="java.beans.XMLDecoder">
+ <string>6</string>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza">
+  <void property="description">
+   <string>Tasty Pizza</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>9.99</string>
+   </object>
+  </void>
+  <void property="size">
+   <object class="java.lang.Enum" method="valueOf">
+    <class>uk.ac.aber.dcs.cs12420.aberpizza.data.PizzaSizeEnum</class>
+    <string>UNSET</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
+  <void property="description">
+   <string>Chips</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>1.99</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemDrink">
+  <void property="description">
+   <string>Cola</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>0.60</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza">
+  <void property="description">
+   <string>Vege Supreme</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>15.99</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza">
+  <void property="description">
+   <string>Peperonni</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>12.99</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
+  <void property="description">
+   <string>Chicken Nuggs (10)</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>4.99</string>
+   </object>
+  </void>
+ </object>
+</java>

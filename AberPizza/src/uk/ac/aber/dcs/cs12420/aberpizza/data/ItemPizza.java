@@ -2,18 +2,26 @@ package uk.ac.aber.dcs.cs12420.aberpizza.data;
 
 import java.math.BigDecimal;
 
-
+/**
+ * The same as item super except for implementing size
+ * @author tim
+ * Pizza price is calculated according to a percentage of the price of a large pizza
+ * Percentages are specified in here
+ */
 public class ItemPizza extends ItemSuper implements Cloneable{
 	private PizzaSizeEnum size;
 	public ItemPizza(BigDecimal price, String description){
 		super(price, description);
-		this.size = PizzaSizeEnum.LARGE;
+		this.size = PizzaSizeEnum.UNSET;
 	}
 	public ItemPizza(BigDecimal price, String description, PizzaSizeEnum size){
 		super(price, description);
 		this.size = size;
 	}
 	public PizzaSizeEnum getSize(){
+		if(size==null){
+			size = PizzaSizeEnum.UNSET;
+		}
 		return size;
 	}
 	public void setSize(PizzaSizeEnum size){
@@ -27,13 +35,13 @@ public class ItemPizza extends ItemSuper implements Cloneable{
 		return description+" - "+size;
 	}
 	public ItemPizza(){
-		
+		this.size = PizzaSizeEnum.UNSET;
 	}
 	@Override
 	public boolean equals(Item i){
 		if(!(i instanceof ItemPizza)){ return false; }
 		ItemPizza j = (ItemPizza)i;
-		if(j.getDescription().equals(description)&&j.getPrice().equals(price)&&j.getSize()==size){
+		if(j.getDescription().equals(description)&&j.getSize()==size){
 			return true;
 		}else{
 			return false;

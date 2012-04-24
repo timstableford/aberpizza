@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.6.0_24" class="java.beans.XMLDecoder">
+ <string>/home/tim/workspace/AberPizza/items.xml</string>
+ <string>/home/tim/workspace/AberPizza/discounts.xml</string>
+ <string>/home/tim/workspace/AberPizza/history.xml</string>
+ <object class="java.math.BigDecimal">
+  <string>20</string>
+ </object>
+</java>

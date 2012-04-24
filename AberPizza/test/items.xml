@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.6.0_24" class="java.beans.XMLDecoder">
+ <string>3</string>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza">
+  <void property="description">
+   <string>Tasty Pizza</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>9.99</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
+  <void property="description">
+   <string>Chips</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>1.99</string>
+   </object>
+  </void>
+ </object>
+ <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemDrink">
+  <void property="description">
+   <string>Cola</string>
+  </void>
+  <void property="price">
+   <object class="java.math.BigDecimal">
+    <string>0.60</string>
+   </object>
+  </void>
+ </object>
+</java>
