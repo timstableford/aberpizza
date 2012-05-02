@@ -125,7 +125,6 @@ public class DiscountValueEditor extends JFrame implements ActionListener{
 		mainPanel.add(pane,c);
 		//////////////
 		this.add(mainPanel,BorderLayout.CENTER);
-		this.setAlwaysOnTop(true);
 		this.setSize(600,300);
 		this.setLocationRelativeTo(discountEditor);
 		updateItemList();
@@ -228,6 +227,7 @@ public class DiscountValueEditor extends JFrame implements ActionListener{
 		}else if("Cancel".equals(aC)){
 			this.dispose();
 		}else if("Set Item Quantity".equals(aC)){
+			if(itemList.isSelectionEmpty()){ return; }
 			String message = "Enter Item Quantity";
 			String rVal;
 			boolean worked = false;
@@ -248,6 +248,7 @@ public class DiscountValueEditor extends JFrame implements ActionListener{
 			oi.setQuantity(l);
 			updateItemList();
 		}else if("Set Pizza Size".equals(aC)){
+			if(itemList.isSelectionEmpty()){ return; }
 			if(getSelectedItem().getItem() instanceof ItemPizza){
 				Object[] options = {"SMALL","MEDIUM","LARGE"};
 				String rVal = (String)JOptionPane.showInputDialog(this,

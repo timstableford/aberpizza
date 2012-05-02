@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.6.0_24" class="java.beans.XMLDecoder">
- <string>5</string>
+<java version="1.6.0_18" class="java.beans.XMLDecoder">
+ <string>2</string>
  <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetPercent">
   <void property="description">
-   <string>50% when 2 large vege supreme</string>
+   <string>50% off 2 large vege supreme</string>
   </void>
   <void property="discount">
    <object class="java.math.BigDecimal">
@@ -16,7 +16,7 @@
      <void property="item">
       <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza">
        <void property="description">
-        <string>Vege Supreme - LARGE</string>
+        <string>Vege Supreme</string>
        </void>
        <void property="price">
         <object class="java.math.BigDecimal">
@@ -40,61 +40,11 @@
  </object>
  <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetValue">
   <void property="description">
-   <string>50p off chips and cola</string>
+   <string>3 pound off large peeronni</string>
   </void>
   <void property="discount">
    <object class="java.math.BigDecimal">
-    <string>0.50</string>
-   </object>
-  </void>
-  <void property="items">
-   <void method="add">
-    <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem">
-     <void property="item">
-      <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
-       <void property="description">
-        <string>Chips</string>
-       </void>
-       <void property="price">
-        <object class="java.math.BigDecimal">
-         <string>0.99</string>
-        </object>
-       </void>
-      </object>
-     </void>
-     <void property="quantity">
-      <int>1</int>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem">
-     <void property="item">
-      <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
-       <void property="description">
-        <string>Cola</string>
-       </void>
-       <void property="price">
-        <object class="java.math.BigDecimal">
-         <string>0.80</string>
-        </object>
-       </void>
-      </object>
-     </void>
-     <void property="quantity">
-      <int>1</int>
-     </void>
-    </object>
-   </void>
-  </void>
- </object>
- <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetPercent">
-  <void property="description">
-   <string>50% when 3 large peperonni brought</string>
-  </void>
-  <void property="discount">
-   <object class="java.math.BigDecimal">
-    <string>50</string>
+    <string>3</string>
    </object>
   </void>
   <void property="items">
@@ -103,7 +53,7 @@
      <void property="item">
       <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemPizza">
        <void property="description">
-        <string>Peperonni - LARGE</string>
+        <string>Peperonni</string>
        </void>
        <void property="price">
         <object class="java.math.BigDecimal">
@@ -116,69 +66,7 @@
       </object>
      </void>
      <void property="quantity">
-      <int>3</int>
-     </void>
-    </object>
-   </void>
-  </void>
- </object>
- <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetValue">
-  <void property="description">
-   <string>1 pound off chips when 10</string>
-  </void>
-  <void property="discount">
-   <object class="java.math.BigDecimal">
-    <string>1.00</string>
-   </object>
-  </void>
-  <void property="items">
-   <void method="add">
-    <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem">
-     <void property="item">
-      <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
-       <void property="description">
-        <string>Chips</string>
-       </void>
-       <void property="price">
-        <object class="java.math.BigDecimal">
-         <string>0.99</string>
-        </object>
-       </void>
-      </object>
-     </void>
-     <void property="quantity">
-      <int>10</int>
-     </void>
-    </object>
-   </void>
-  </void>
- </object>
- <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.DiscountSetValue">
-  <void property="description">
-   <string>3 pound off 10 patato wedges</string>
-  </void>
-  <void property="discount">
-   <object class="java.math.BigDecimal">
-    <string>3.00</string>
-   </object>
-  </void>
-  <void property="items">
-   <void method="add">
-    <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem">
-     <void property="item">
-      <object class="uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide">
-       <void property="description">
-        <string>Potato Wedge</string>
-       </void>
-       <void property="price">
-        <object class="java.math.BigDecimal">
-         <string>0.40</string>
-        </object>
-       </void>
-      </object>
-     </void>
-     <void property="quantity">
-      <int>10</int>
+      <int>1</int>
      </void>
     </object>
    </void>

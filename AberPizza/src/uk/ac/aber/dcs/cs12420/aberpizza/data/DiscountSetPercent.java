@@ -22,7 +22,7 @@ public class DiscountSetPercent extends DiscountSuper{
 	 */
 	@Override
 	public BigDecimal getDiscount(Order o) {
-		BigDecimal sub = o.getSubtotal();
+		BigDecimal sub = o.getSubtotal();;
 		BigDecimal disc = (sub.divide(new BigDecimal("100"))).multiply(discount);
 		disc = disc.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		if(super.discountApplies(o)){
