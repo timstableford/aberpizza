@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.6.0_24" class="java.beans.XMLDecoder">
+<java version="1.6.0_18" class="java.beans.XMLDecoder">
  <string>test/items.xml</string>
  <string>test/discounts.xml</string>
  <string>test/history.xml</string>

@@ -14,7 +14,11 @@ import uk.ac.aber.dcs.cs12420.aberpizza.data.Item;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.ItemSide;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.OrderItem;
 import uk.ac.aber.dcs.cs12420.aberpizza.data.Till;
-
+/**
+ * tests loading and saving discounts, more tests in order test
+ * @author tim
+ *
+ */
 public class DiscountTest {
 	private Till till,till2;
 	private DiscountSetValue d1;

@@ -8,12 +8,19 @@ import uk.ac.aber.dcs.cs12420.aberpizza.data.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * tests creating an order and adding a discount to it
+ * @author tim
+ *
+ */
 public class OrderTest {
 	private Order order;
 	private BigDecimal vat = new BigDecimal("20");
 	private ArrayList<Discount> discount;
 	private ArrayList<Item> items;
+	/**
+	 * sets up a discount, order and item list, propagates item list, also tests orderitem
+	 */
 	@Before
 	public void setup(){
 		discount = new ArrayList<Discount>();
@@ -23,6 +30,9 @@ public class OrderTest {
 		items.add(new ItemSide(new BigDecimal("0.80"),"Garlic Bread"));
 		items.add(new ItemDrink(new BigDecimal("0.80"),"Cola"));
 	}
+	/**
+	 * adds item to order and checks
+	 */
 	@Test
 	public void testAddItemToOrderAndCheck() {
 		order.addItem(items.get(0), 2);
@@ -30,6 +40,9 @@ public class OrderTest {
 			fail("Item added is not what we get back");
 		}
 	}
+	/**
+	 * change orderitem quantity and check
+	 */
 	@Test
 	public void testItemQuantityChange(){
 		order.addItem(items.get(1), 1);
@@ -45,6 +58,9 @@ public class OrderTest {
 			//this means it passed
 		}
 	}
+	/**
+	 * check that subtotals and vat are right
+	 */
 	@Test
 	public void checkTotalsSubtotalsAndVat(){
 		order.addItem(items.get(0),2);
@@ -59,6 +75,9 @@ public class OrderTest {
 			fail("total is wrong");
 		}
 	}
+	/**
+	 * tests to make sure the correct discount is applies for the correct amount
+	 */
 	@Test
 	public void testGetDiscount(){
 		ArrayList<OrderItem> d1l = new ArrayList<OrderItem>();

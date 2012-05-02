@@ -68,5 +68,28 @@ public class ItemsTest {
 		}
 		assertEquals(i3.getPrice(),b.getPrice());
 	}
+	@Test
+	public void testSetGetPrice(){
+		i2.setPrice(new BigDecimal("2.43"));
+		assertEquals(i2.getPrice(),new BigDecimal("2.43"));
+		i2.setPrice(new BigDecimal("2.567"));
+		assertEquals(i2.getPrice(),new BigDecimal("2.57"));
+	}
+	@Test
+	public void testEquals(){
+		Item i4 = new ItemSide(new BigDecimal("1.99"),"Chips");
+		if(i2.equals(i4)==false){
+			fail("items not equal");
+		}
+		if(i2.equals(i3)){
+			fail("items not meant to be equal");
+		}
+	}
+	@Test
+	public void testPizzaSize(){
+		ItemPizza u = (ItemPizza)i1;
+		u.setSize(PizzaSizeEnum.SMALL);
+		assertEquals(u.getSize(),PizzaSizeEnum.SMALL);
+	}
 
 }
